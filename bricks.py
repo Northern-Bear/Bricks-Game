@@ -9,6 +9,11 @@ black = pygame.Color(0, 0, 0) # cornflower blue
 
 # bat init
 
+bat = pygame.image.load('images/bat.png')
+playerY = 540
+batRect = bat.get_rect()
+mouseX, mouseY = (0, playerY)
+
 # ball init
 
 # brick init
@@ -21,12 +26,21 @@ while True:
 
     # bat and ball draw
 
+    mainSurface.blit(bat, batRect)
+
     # events
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+        elif event.type == MOUSEMOTION:
+            mouseX, mouseY = event.pos
+            if (mouseX < 800 - 55):
+                batRect.topleft = (mouseX, playerY)
+            else:
+                batRect.topleft = (800 - 55, playerY)
+    
 
     # main game logic
 
