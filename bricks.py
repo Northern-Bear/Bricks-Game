@@ -81,8 +81,9 @@ while True:
         bY = 0
         sY *= -1
     if (bY >= 600 - 8):
-        bY = 600 - 8
-        sY *= -1
+        ballServed = False
+        bX, bY = (24, ballStartY)
+        ballRect.topleft = (bX, bY)
     if (bX <= 0):
         bX = 0
         sX *= -1
