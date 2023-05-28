@@ -28,11 +28,23 @@ ballRect.topleft = (bX, bY)
 
 # brick init
 
+brick = pygame.image.load('images/brick.png')
+bricks = []
+
+for y in range(5):
+    brickY = (y * 24) + 100
+    for x in range(10):
+        brickX = (x * 31) + 245
+        bricks.append(Rect(brickX, brickY, brick.get_width(), brick.get_height()))
+
 while True:
 
     mainSurface.fill(black)
 
     # brick draw
+
+    for b in bricks:
+        mainSurface.blit(brick, b)
 
     # bat and ball draw
 
@@ -52,13 +64,16 @@ while True:
                 batRect.topleft = (mouseX, playerY)
             else:
                 batRect.topleft = (800 - 55, playerY)
+        elif event.type == MOUSEBUTTONUP:
+            if not ballServed:
+                ballServed = True
     
 
     # main game logic
-
-    bX += sX
-    bY += sY
-    ballRect.topleft = (bX, bY)
+    if ballServed:
+        bX += sX
+        bY += sY
+        ballRect.topleft = (bX, bY)
 
     # collision detection
 
