@@ -75,6 +75,10 @@ while True:
         bX = 800 -8
         sX *= -1
 
+    if ballRect.colliderect(batRect):
+        bY = playerY - 8
+        sY *= -1
+
     pygame.display.update()
     fpsClock.tick(30)
 
