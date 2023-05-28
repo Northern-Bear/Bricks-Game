@@ -94,6 +94,19 @@ while True:
         bY = playerY - 8
         sY *= -1
 
+    brickHitIndex = ballRect.collidelist(bricks)
+    if brickHitIndex >= 0:
+        hb = bricks[brickHitIndex]
+
+        mX = bX + 4
+        mY = bY + 4
+        if mX > hb.x + hb.width or mX < hb.x:
+            sX *= -1
+        else:
+            sY *= -1
+    
+        del (bricks[brickHitIndex])
+
     pygame.display.update()
     fpsClock.tick(30)
 
