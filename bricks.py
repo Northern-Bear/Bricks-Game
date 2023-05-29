@@ -5,6 +5,7 @@ pygame.init()
 fpsClock = pygame.time.Clock()
 mainSurface = pygame.display.set_mode((800, 600))
 
+brick = None
 black = pygame.Color(0, 0, 0) # cornflower blue
 
 # bat init
@@ -28,14 +29,21 @@ ballRect.topleft = (bX, bY)
 
 # brick init
 
-brick = pygame.image.load('images/brick.png')
-bricks = []
+def createBricks(pathToImg, rows, cols):
+    global brick
 
-for y in range(5):
-    brickY = (y * 24) + 100
-    for x in range(10):
-        brickX = (x * 31) + 245
-        bricks.append(Rect(brickX, brickY, brick.get_width(), brick.get_height()))
+    brick = pygame.image.load(pathToImg)
+    bricks = []
+
+    for y in range(rows):
+        brickY = (y * 24) + 100
+        for x in range(cols):
+            brickX = (x * 31) + 245
+            bricks.append(Rect(brickX, brickY, brick.get_width(), brick.get_height()))
+    
+    return bricks
+
+bricks = createBricks('images/brick.png', 5, 10)
 
 while True:
 
